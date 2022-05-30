@@ -34,6 +34,8 @@ if (all(fgetl(fid) ~= -1))
 
  figure
  findpeaks(data, 'MinPeakHeight', signal);
+ title(filename)
+ savefig(filename)
  
  
 % encontrar lambidas e posição das mesmas
@@ -55,7 +57,7 @@ qtde_total_licks = length(pks)
  mean_ILI = soma/index;
  signal_mean = mean(data(1:fs*tempo_minutos,1));
  s = std(data(1:fs*tempo_minutos,1));
- signal = 5*s+signal_mean;
+ signal = 4*s+signal_mean;
  dados = data(1:fs*tempo_minutos,1);
  save('dados', 'dados');
 
@@ -190,6 +192,7 @@ end
        
 ILI =0;
 flag =0;
+flag_s=0;
 for segundo = 1:(length(data)/fs)
     
      for l = 1:length(locs_tempo)
@@ -209,7 +212,10 @@ for segundo = 1:(length(data)/fs)
      ILI =0;
      
 
-end
+end 
+
+inicioj =0;
+fimj=0;
  for j = 1:1:length(flag_s)
     if(flag_s(j)>1)
         qtdex = qtdex+1;
@@ -231,7 +237,8 @@ end
          media =0;
 %                             
                               
-                               
+          if(inicioj>0 && fimj-1>0)
+             
           for i = mean_ILI_s(inicioj):mean_ILI_s(fimj-1)
             if (i+1 <mean_ILI_s(fimj-1))
              media = media +abs(locs_tempo(i)*60 - locs_tempo(i+1)*60);
@@ -243,6 +250,7 @@ end
           inicioj =0;
           fimj =0;
           %total_licks_bout= 0;
+          end
       else
           inicioj=0;
           fimj=0;
@@ -308,6 +316,7 @@ else
     latencia_bout =-1;
 end
 end
+
 
 
 
