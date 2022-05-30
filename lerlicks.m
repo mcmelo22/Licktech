@@ -29,7 +29,7 @@ if (all(fgetl(fid) ~= -1))
  janelas_30s = duracao/30;
  signal_mean = mean(data);
  s = std(data);
- signal = 4*s+signal_mean; %definir limiar de picos de lambidas
+ signal = 5*s+signal_mean; %definir limiar de picos de lambidas
  intv = 1/fs;
 
  figure
@@ -57,7 +57,7 @@ qtde_total_licks = length(pks)
  mean_ILI = soma/index;
  signal_mean = mean(data(1:fs*tempo_minutos,1));
  s = std(data(1:fs*tempo_minutos,1));
- signal = 4*s+signal_mean;
+ signal = 5*s+signal_mean;
  dados = data(1:fs*tempo_minutos,1);
  %save('dados', 'dados');
 
