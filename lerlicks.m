@@ -29,13 +29,18 @@ if (all(fgetl(fid) ~= -1))
  janelas_30s = duracao/30;
  signal_mean = mean(data);
  s = std(data);
- signal = 5*s+signal_mean; %definir limiar de picos de lambidas
+ signal = 4*s+signal_mean; %definir limiar de picos de lambidas
  intv = 1/fs;
 
  figure
  findpeaks(data, 'MinPeakHeight', signal);
  title(filename)
- %savefig(filename)
+ result = split(filename, 'coleta\\')
+ newStr = erase( result(2,1) , '.txt' ) 
+ newStr = strrep(newStr,'\','_')
+ newStr = newStr +'.fig'
+ savefig(newStr)
+ 
  
  
 % encontrar lambidas e posição das mesmas
@@ -57,7 +62,7 @@ qtde_total_licks = length(pks)
  mean_ILI = soma/index;
  signal_mean = mean(data(1:fs*tempo_minutos,1));
  s = std(data(1:fs*tempo_minutos,1));
- signal = 5*s+signal_mean;
+ signal = 4*s+signal_mean;
  dados = data(1:fs*tempo_minutos,1);
  %save('dados', 'dados');
 
