@@ -35,7 +35,7 @@ if (all(fgetl(fid) ~= -1))
  figure
  findpeaks(data, 'MinPeakHeight', signal);
  title(filename)
- savefig(filename)
+ %savefig(filename)
  
  
 % encontrar lambidas e posição das mesmas
@@ -59,7 +59,7 @@ qtde_total_licks = length(pks)
  s = std(data(1:fs*tempo_minutos,1));
  signal = 4*s+signal_mean;
  dados = data(1:fs*tempo_minutos,1);
- save('dados', 'dados');
+ %save('dados', 'dados');
 
 flag =0;
  latencia_primeira = 0;
